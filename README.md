@@ -40,6 +40,16 @@ stock.get_all_share_index()
 python3 -m unittest test.superSimpleStockTest
 ```
 
+If [coverage](https://coverage.readthedocs.io/en/coverage-4.5.1a/) is
+installed, run tests and report coverage with:
+
+```
+coverage run -m unittest test.superSimpleStockTest
+coverage html --include='superSimpleStock*'
+```
+
+Coverage report will be in [htmlcov](htmlcov/index.html)
+
 ----
 
 Author: Dario Beraldi

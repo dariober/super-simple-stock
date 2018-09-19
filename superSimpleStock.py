@@ -23,7 +23,7 @@ class Stock:
         """
         dstock= self.gbce_data[self.gbce_data['Stock_Symbol'] == stock]
         if len(dstock['Type']) != 1:
-            raise Exception('Too many or no values for\n%s' % stock)
+            raise StockException('Too many or no values for\n%s' % stock)
 
         if list(dstock['Type'])[0] == 'Common':
             return list(dstock['Last_Dividend'])[0] / ticker_price
@@ -51,7 +51,7 @@ class Stock:
         bought
         """
         if stock not in set(self.gbce_data['Stock_Symbol']):
-            raise Exception('Unknown stock: %s' % stock)
+            raise StockException('Unknown stock: %s' % stock)
 
         trade= {'Stock_Symbol': stock,
                 'timestamp': datetime.datetime.now().isoformat(), 
@@ -119,4 +119,5 @@ class Stock:
         gbce_data['Fixed_Dividend']= fixed_dividend
         return gbce_data
 
-
+class StockException(Exception):
+    pass

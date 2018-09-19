@@ -9,6 +9,7 @@ python3 -m unittest test.superSimpleStockTest
 import unittest
 import math
 import superSimpleStock
+import time
 
 class TestSuperSimpleStock(unittest.TestCase):
 
@@ -17,6 +18,8 @@ class TestSuperSimpleStock(unittest.TestCase):
         self.assertAlmostEqual(0, stock.get_dividend_yield(stock= 'TEA', ticker_price= 2))
         self.assertAlmostEqual(2.667, stock.get_dividend_yield(stock= 'POP', ticker_price= 3), places= 3)
         self.assertAlmostEqual(0.667, stock.get_dividend_yield(stock= 'GIN', ticker_price= 3), places= 3)
+
+        self.assertRaises(superSimpleStock.StockException, stock.get_dividend_yield, stock= 'FOOBAR', ticker_price= 3)
 
     def testCanCalculatePERatioForStock(self):
         stock= superSimpleStock.Stock('test/sample_data.csv')
@@ -30,6 +33,8 @@ class TestSuperSimpleStock(unittest.TestCase):
 
         stock.record_trade(stock= 'TEA', quantity= 10, sold= True, price= 5)
         self.assertEqual(2, len(stock.trade))
+
+        self.assertRaises(superSimpleStock.StockException, stock.record_trade, stock= 'FOOBAR', quantity= 10, sold= True, price= 5)
 
     def testCanCalculateStockPrice(self):
         
@@ -47,6 +52,9 @@ class TestSuperSimpleStock(unittest.TestCase):
 
         self.assertAlmostEqual(4.4, stock.get_stock_price('POP'))
         self.assertAlmostEqual(44.0, stock.get_stock_price('TEA'))
+        
+        time.sleep(2)
+        self.assertTrue(math.isnan(stock.get_stock_price('TEA', last_minutes= 0.01)))
 
     def testCanGetAllShareIndex(self):
         stock= superSimpleStock.Stock('test/sample_data.csv')
