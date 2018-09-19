@@ -1,3 +1,5 @@
+[![Build & Test Status](https://travis-ci.com/dariober/super-simple-stock.svg?branch=master)](https://travis-ci.com/dariober/super-simple-stock)
+
 The code for the *Super Simple Stock* exercise is in `superSimpleStock.py`.
 Tests and test data are in `test/superSimpleStockTest.py` and `test/sample_data.csv`
 respectively.
