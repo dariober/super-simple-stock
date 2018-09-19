@@ -52,6 +52,16 @@ coverage html --include='superSimpleStock*'
 
 Coverage report will be in [htmlcov](htmlcov/index.html)
 
+Or:
+
+```
+coverage report --include='superSimpleStock*'
+
+Name                  Stmts   Miss  Cover
+-----------------------------------------
+superSimpleStock.py      64      3    95%
+```
+
 ----
 
 Author: Dario Beraldi
